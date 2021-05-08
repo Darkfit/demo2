@@ -1,0 +1,495 @@
+/*modifique esto de img porque me edita todas las imagenes, le puse un id para asegurar*/
+
+#gifCasino{
+    display:block;
+    margin:auto;
+    width: 300px; height: 300px;
+}
+h5{
+    color: rgb(177, 194, 28);
+    margin:auto;
+    font-weight: 800;
+    font-size:1.6em;
+}
+
+.modal-content{
+    background-color: rgb(76, 73, 77) ;
+    width:500px;
+    padding: 10px 20px;
+    margin: 5% auto;
+    position: relative;
+  }
+  .modal{
+    background-color: rgba(0,0,0,.8);
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;  
+  }
+
+  .btn-danger{
+
+    background: brown;
+    height: 10%;
+    width: 100%;
+    padding: 10px;
+    
+    
+  }
+
+.controls{
+  height: 10%;
+  width: 100%;  
+  margin-left: 0px;
+  background: #585757;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #7c815f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+
+}
+
+body { 
+  background-image: url("images.jpg");   
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img-margin{
+  margin:auto;
+  display: block;
+  width: 65px; 
+  height: 65px; 
+  padding: 10px;
+  left: 100px;
+  top: 50px;  
+
+}
+.modal-bodyI{
+  height: 350px;  
+}
+
+.footerdiv{
+  margin: auto;
+  width: 40%; 
+  padding: 10px;
+
+}
+
+
+
+#textoInstrucciones{
+
+  overflow-y: scroll;
+  
+  text-align: justify;
+  text-justify: inter-word;  
+  height: 90%; 
+  width: 100%;
+  padding-right: 15px;
+}
+#iModal{
+  padding-top: 70px;
+}
+
+/*modal acerca de agregar scroll*/
+#textAcercade{
+  overflow-y: scroll;  
+  text-align: justify;
+  text-justify: inter-word;  
+  height: 90%; 
+  width: 100%;
+  padding-right: 15px;
+
+}
+
+/*Botones superiores*/
+.botones_superiores{
+  width: 30px;
+  height: 30px; 
+  max-width: 256px;
+  max-height: 256px;  
+}
+
+/*ContenedorInformacionDVIS*/
+
+#ContenedorInformacion{
+  float:right;
+  width:auto;
+  padding-top: 5px;
+  padding-right: 10px;
+}
+
+.divInformacion{
+  display: inline-block;
+  background-color:rgb(211,211,211);
+  border-style: red;
+  width: auto;
+  height: 30px;
+  margin-left:auto;
+  align-items: auto;
+  
+;	
+}
+
+/*
+.modal-content{
+  background-color: rgb(76, 73, 77) ;
+  width:500px;
+  padding: 10px 20px;
+  margin: 5% auto;
+  position: relative;
+}
+*/
+
+
+
+
+
+@media screen and  (max-width: 1024px){
+
+  .modal-dialog{
+    height: 92%;
+    width: 100%; 
+  }
+  .modal-content{
+    height: 100%;
+    width: 100%;   
+    
+  }
+ /*modal del inicio de la pantalla */
+  #myModal{
+    padding-top: 70px;
+  } 
+  /*modal de boton "instrucciones"*/
+  #iModal{
+    padding-top: 170px;
+  }
+
+  #gifCasino{
+    display:block;
+    margin:auto;
+    width: 300px; height: 380px;
+  }
+
+  
+      
+}
+
+
+@media screen and  (max-width: 768px){
+  /*modal del inicio de la pantalla */
+  #myModal{
+    padding-top: 180px;
+  } 
+  /*modal de boton "instrucciones"*/
+  #iModal{
+    padding-top: 28%;
+  }
+  /*modal de boton "acerca de"*/
+  #aModal{
+    padding-top: 70px;
+  }  
+  #Ranking{
+    padding-top: 70px;
+  }
+  
+      
+}
+
+
+@media screen and  (max-width: 640px){ 
+  /*modal del inicio de la pantalla */
+  #myModal{
+    padding-top: 0px;     
+  } 
+
+  .modal-header{
+    height: 30%;    
+  }
+  
+  .modal-dialog{
+    height: 80%;
+    width: 60%;   
+  }  
+
+  .modal-content{
+    height: 80%;
+    width: 100%;   
+    
+  }  
+  .modal-bodyI{
+    height: 60%;
+    width: 100%;    
+  } 
+  
+  h5{
+    color: rgb(177, 194, 28);
+    margin:auto;
+    font-weight: 20%;
+    font-size:80%;
+  }
+ 
+
+
+#gifCasino{
+  display:block;
+  margin:auto;
+  width: 240px; height: 80px;
+}
+
+
+.footerdiv{
+  margin: auto;
+  width: 40%; 
+  padding: 0px;
+  height: auto;
+  
+}
+
+.btn-danger{
+
+  background: brown;
+  height: 10%;
+  width:100%;
+  padding: 0px; 
+  
+}
+
+.controls{
+height: 30%;
+width: 100%;
+background: #585757;
+padding: 0px;
+border-radius: 4px;
+border: 1px solid #7c815f;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 18px;
+
+}
+#button-cancelar{
+  height: 30px;
+  width: 30px;
+  font-size: 10px;
+}
+
+/*modal del inicio de la acerca de */
+#aModal{
+  padding-top: 0px;
+  height: auto;
+  width: auto;
+}
+
+#textoAcercade{
+  padding-right: 0px;
+  overflow-y: scroll;  
+  text-align: justify;
+  text-justify: inter-word;  
+  height: 90%; 
+  width: 100%;  
+  font-size: 12px;
+}
+
+/*modal del inicio de la instrucciones*/
+
+#iModal{
+padding-top: 0px;
+height: auto;
+width: auto;
+
+}
+
+#Ranking{
+  padding-top: 0px;
+  height: auto;
+  width: auto;
+  
+  }
+
+#textoInstrucciones{
+  padding-right: 0px;
+  overflow-y: scroll;  
+  text-align: justify;
+  text-justify: inter-word;  
+  height: 90%; 
+  width: 100%;  
+  font-size: 12px;
+}
+
+}
+
+
+
+
+
+@media screen and  (max-width: 360px) {
+  #myModal{
+    padding-top: 180px;     
+  } 
+  .modal-dialog{
+    height: auto;
+    width: auto;
+    
+  } 
+  
+  h5{
+    color: rgb(177, 194, 28);
+    margin:auto;
+    font-weight: 100%;
+    font-size:100%;
+  }  
+
+ /*modal del inicio de la instrucciones*/
+  #iModal{
+    padding-top: 100px;
+    height: auto;
+    width: auto;
+    
+    }
+  /*modal del inicio de la acerca de */
+  #aModal{
+    padding-top: 100px;
+    height: auto;
+    width: auto;
+  }
+  #Ranking{
+    padding-top: 100px;
+    height: auto;
+    width: auto;
+  }
+
+
+  .modal-dialog{
+    height: 80%;
+    width: 95%;   
+  }  
+
+  .modal-content{
+    height: 80%;
+    width: 100%; 
+    
+  }  
+
+}
+
+/*Parte de Manuel*/
+
+#patio{
+  border: 5px solid black;
+  height: 550px;
+  margin-right: 200px;
+  margin-left: 200px;
+  margin-top: 100px;
+  padding-bottom: 1px;
+  
+  
+}
+
+.Zonas{
+  
+  border: 1px solid red;
+  text-align: center;
+  margin-right: 370px;
+  margin-left: 370px;
+  
+}
+
+#ZonaA{
+  position: relative;
+  left: -250px;
+  top: 30px;
+ 
+  
+}
+
+#ZonaB{
+  position: relative;
+  left: 250px;
+  top: -420px;
+  height: 450px;
+  
+  
+ 
+}
+h1{
+  text-align: center;
+}
+
+.Definicion{
+  color:white;
+}
+
+.Mensaje{
+  margin: 5px;
+}
+
+.MegaBoton{
+  margin-top: 20px;
+  background: brown;
+  color: white;
+  text-align: center;
+  font-size: x-large;
+  
+}
+
+.Boton{
+  background: brown;
+  color: white;
+}
+
+.Mensaje{
+  background-color: tomato;
+}
+
+.Zonas{
+  background-color: #585757;;
+  border-radius: 10px;
+ 
+}
+
+#patio{
+  background-color: tomato;
+  animation: mianimacion 1s ease-in-out 0s infinite normal none;
+
+}
+
+@keyframes mianimacion {
+    14% {
+      border-color: red;
+    }
+    28% {
+      border-color: orange;
+    }
+    42% {
+      border-color: yellow;
+    }
+    56% {
+      border-color: greenyellow;
+    }
+    70% {
+      border-color: blue;
+    }
+
+    84% {
+      border-color: violet;
+    }
+    
+}
+
+#ApostarB{
+  margin-top: 15px;
+}
+
+#MensajePatio{
+  background-color: brown;
+  color: white;
+}
+
+
+
+
+

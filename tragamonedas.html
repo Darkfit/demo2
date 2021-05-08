@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./tragamonedas.css" />
+    <title>Tragamonedas</title>
+
+  </head>
+   
+  <body onload="TraerNombre()">
+
+  <!--ventana emergente-->
+    <div id="myModal"class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div  class="modal-header">
+              <div>
+                <h5 class="modal-title">¡BIENVENIDO AL TRAGAMONEDAS VIRTUAL!</h5>
+              </div>   
+              <div>
+                <button class="btn btn-light" id ="button-cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  x
+                </button>
+              </div>   
+
+
+            </div>
+            <div class="modal-body">        
+              
+              <img id='gifCasino' src="CASINO.gif">
+            </div>
+            
+            <div class="modal-footer" >
+              
+              <div class = "footerdiv"><input id="InputNombre"  class="controls" type="text" name="nombres" id="nombres" placeholder="Nombre" size="8" maxlength="10"></div>
+              <div class = "footerdiv"><button class="btn-danger" data-dismiss="modal" id ="button-aceptar">Aceptar</button></div>
+
+            </div>                       
+
+          </div>
+        </div>
+     </div>
+
+     <div class="botones"> 
+
+    <!-- BOTON ACERCA DE -->
+    <button type="button" class="botona" data-toggle="modal" data-target="#aModal">
+      
+      <img class="botones_superiores" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTAyLjY0MyA1MDIuNjQzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDIuNjQzIDUwMi42NDM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8cGF0aCBkPSJNMjUxLjI1NiwyMzcuNTkxYzM3LjE2NiwwLDY3LjA0Mi0zMC4wNDgsNjcuMDQyLTY2Ljk3N2MwLjA0My0zNy4wMzctMjkuODc2LTY2Ljk5OS02Ny4wNDItNjYuOTk5DQoJCQljLTM2LjkwOCwwLTY2Ljg2OSwyOS45NjItNjYuODY5LDY2Ljk5OUMxODQuMzg3LDIwNy41ODcsMjE0LjM0OSwyMzcuNTkxLDI1MS4yNTYsMjM3LjU5MXoiLz4NCgkJPHBhdGggZD0iTTMwNS4wMzIsMjQ4LjUwNkgxOTcuNjUzYy0xOS4xOTgsMC0zNC45MjMsMTcuNjAyLTM0LjkyMywzOS4xOTR2MTA3Ljg1NGMwLDEuMTg2LDAuNjA0LDIuMjQzLDAuNjY5LDMuNDczaDE3NS44MjMNCgkJCWMwLjEyOS0xLjIyOSwwLjYyNi0yLjI4NiwwLjYyNi0zLjQ3M1YyODcuN0MzMzkuOTEyLDI2Ni4xMDgsMzI0LjE4NywyNDguNTA2LDMwNS4wMzIsMjQ4LjUwNnoiLz4NCgkJPHBhdGggZD0iTTQzMS41ODgsMjY5LjU1OWMyOS44MzIsMCw1My43NTQtMjQuMDA4LDUzLjc1NC01My42NjhzLTIzLjkyMi01My43MTEtNTMuNzU0LTUzLjcxMQ0KCQkJYy0yOS42MTcsMC01My41ODIsMjQuMDUxLTUzLjU4Miw1My43MTFDMzc3Ljk0MiwyNDUuNTMsNDAxLjk3MiwyNjkuNTU5LDQzMS41ODgsMjY5LjU1OXoiLz4NCgkJPHBhdGggZD0iTTQ3NC43MDgsMjc4LjMxN2gtODYuMDQ2Yy0xNS40NDUsMC0yOC4wNjQsMTQuMTA3LTI4LjA2NCwzMS40NzJ2ODYuNDEzYzAsMC45MjgsMC40NTMsMS44MTIsMC41MTgsMi44MjZoMTQxLjAzDQoJCQljMC4wNjUtMS4wMTQsMC40OTYtMS44OTgsMC40OTYtMi44MjZ2LTg2LjQxM0M1MDIuNzA3LDI5Mi40MjQsNDkwLjExLDI3OC4zMTcsNDc0LjcwOCwyNzguMzE3eiIvPg0KCQk8cGF0aCBkPSJNNzEuMDExLDI2OS41NTljMjkuNzg5LDAsNTMuNzMzLTI0LjAwOCw1My43MzMtNTMuNjY4UzEwMC44LDE2Mi4xOCw3MS4wMTEsMTYyLjE4Yy0yOS42MzgsMC01My42MDMsMjQuMDUxLTUzLjYwMyw1My43MTENCgkJCVM0MS4zNzMsMjY5LjU1OSw3MS4wMTEsMjY5LjU1OUw3MS4wMTEsMjY5LjU1OXoiLz4NCgkJPHBhdGggZD0iTTExNC4xMDksMjc4LjMxN0gyNy45NzdDMTIuNTc2LDI3OC4zMTcsMCwyOTIuNDI0LDAsMzA5Ljc4OXY4Ni40MTNjMCwwLjkyOCwwLjQ1MywxLjgxMiwwLjUzOSwyLjgyNmgxNDEuMDMNCgkJCWMwLjA2NS0xLjAxNCwwLjQ3NS0xLjg5OCwwLjQ3NS0yLjgyNnYtODYuNDEzQzE0Mi4wODcsMjkyLjQyNCwxMjkuNDg5LDI3OC4zMTcsMTE0LjEwOSwyNzguMzE3eiIvPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCgk8Zz4NCgk8L2c+DQoJPGc+DQoJPC9nPg0KCTxnPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"/>
+
+    </button>
+
+    <!-- BOTON INSTRUCCIONES-->
+    <button type="button" class="botoni" data-toggle="modal" data-target="#iModal">
+      <img class="botones_superiores"src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSItNTggMCA1MTIgNTEyIiB3aWR0aD0iNTEycHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTI3NC45ODgyODEgOC43ODkwNjJ2MTExLjIxODc1aDExMS4yMjY1NjN6bTAgMCIvPjxwYXRoIGQ9Im0yNTkuOTg0Mzc1IDE1MC4wMTE3MTljLTguMjgxMjUgMC0xNS02LjcxODc1LTE1LTE1LjAwMzkwN3YtMTM1LjAwNzgxMmgtMjI5Ljk4NDM3NWMtOC4yODUxNTYgMC0xNSA2LjcxNDg0NC0xNSAxNXY0ODJjMCA4LjI4NTE1NiA2LjcxNDg0NCAxNSAxNSAxNWgzNjUuMDA3ODEyYzguMjg1MTU3IDAgMTUtNi43MTQ4NDQgMTUtMTV2LTM0Ni45ODgyODF6bS0xOTguNzk2ODc1LTYyLjAwMzkwN2M3LjE5OTIxOS0xNy4wMjM0MzcgMjMuNzkyOTY5LTI4LjAyMzQzNyA0Mi4yNzM0MzgtMjguMDIzNDM3IDI1LjMwNDY4NyAwIDQ1Ljg5MDYyNCAyMC41ODU5MzcgNDUuODkwNjI0IDQ1Ljg5MDYyNSAwIDIwLjA1MDc4MS0xMi45Mjk2ODcgMzcuMTQwNjI1LTMwLjg5MDYyNCA0My4zNjcxODh2MTAuNjMyODEyYzAgOC4yODUxNTYtNi43MTQ4NDQgMTUtMTUgMTUtOC4yODEyNSAwLTE1LTYuNzE0ODQ0LTE1LTE1di0yMy4xMTMyODFjMC04LjI4NTE1NyA2LjcxODc1LTE1IDE1LTE1IDguNzYxNzE4IDAgMTUuODg2NzE4LTcuMTI4OTA3IDE1Ljg4NjcxOC0xNS44ODY3MTkgMC04Ljc2MTcxOS03LjEyNS0xNS44OTA2MjUtMTUuODg2NzE4LTE1Ljg5MDYyNS02LjQwMjM0NCAwLTEyLjE0ODQzOCAzLjgxMjUtMTQuNjQ0NTMyIDkuNzEwOTM3LTMuMjI2NTYyIDcuNjI4OTA3LTEyLjAyNzM0NCAxMS4xOTkyMTktMTkuNjU2MjUgNy45NzI2NTctNy42MzI4MTItMy4yMzA0NjktMTEuMTk5MjE4LTEyLjAzMTI1LTcuOTcyNjU2LTE5LjY2MDE1N3ptNTcuMjczNDM4IDEzMS44NzEwOTRjMCAzLjk0OTIxOS0xLjU5NzY1NyA3LjgxMjUtNC4zOTA2MjYgMTAuNjAxNTYzLTIuNzg5MDYyIDIuNzg5MDYyLTYuNjYwMTU2IDQuMzk4NDM3LTEwLjYwOTM3NCA0LjM5ODQzNy0zLjk0OTIxOSAwLTcuODA4NTk0LTEuNjA5Mzc1LTEwLjYwOTM3Ni00LjM5ODQzNy0yLjc4OTA2Mi0yLjc4OTA2My00LjM5MDYyNC02LjY2MDE1Ny00LjM5MDYyNC0xMC42MDE1NjMgMC0zLjk0OTIxOCAxLjYwMTU2Mi03LjgyMDMxMiA0LjM5MDYyNC0xMC42MDkzNzUgMi44MDA3ODItMi43ODkwNjIgNi42NjAxNTctNC4zOTA2MjUgMTAuNjA5Mzc2LTQuMzkwNjI1IDMuOTQ5MjE4IDAgNy44MTI1IDEuNjAxNTYzIDEwLjYwOTM3NCA0LjM5MDYyNSAyLjc5Mjk2OSAyLjc4OTA2MyA0LjM5MDYyNiA2LjY2MDE1NyA0LjM5MDYyNiAxMC42MDkzNzV6bTIwMS41NDY4NzQgMjMxLjE0ODQzOGgtMjQyLjUwNzgxMmMtOC4yODEyNSAwLTE1LTYuNzE0ODQ0LTE1LTE1czYuNzE4NzUtMTUgMTUtMTVoMjQyLjUwNzgxMmM4LjI4MTI1IDAgMTUgNi43MTQ4NDQgMTUgMTVzLTYuNzE4NzUgMTUtMTUgMTV6bTAtNjBoLTI0Mi41MDc4MTJjLTguMjgxMjUgMC0xNS02LjcxODc1LTE1LTE1IDAtOC4yODUxNTYgNi43MTg3NS0xNSAxNS0xNWgyNDIuNTA3ODEyYzguMjgxMjUgMCAxNSA2LjcxNDg0NCAxNSAxNSAwIDguMjgxMjUtNi43MTg3NSAxNS0xNSAxNXptMC02MGgtMjQyLjUwNzgxMmMtOC4yODEyNSAwLTE1LTYuNzE4NzUtMTUtMTUuMDAzOTA2IDAtOC4yODEyNSA2LjcxODc1LTE1IDE1LTE1aDI0Mi41MDc4MTJjOC4yODEyNSAwIDE1IDYuNzE4NzUgMTUgMTUgMCA4LjI4NTE1Ni02LjcxODc1IDE1LjAwMzkwNi0xNSAxNS4wMDM5MDZ6bTAtNjAuMDAzOTA2aC0xNTljLTguMjg1MTU2IDAtMTUuMDAzOTA2LTYuNzE0ODQ0LTE1LjAwMzkwNi0xNSAwLTguMjg1MTU3IDYuNzE4NzUtMTUgMTUuMDAzOTA2LTE1aDE1OWM4LjI4NTE1NyAwIDE1IDYuNzE0ODQzIDE1IDE1IDAgOC4yODUxNTYtNi43MTg3NSAxNS0xNSAxNXptMC02MGgtMTU5Yy04LjI4NTE1NiAwLTE1LjAwMzkwNi02LjcxNDg0NC0xNS4wMDM5MDYtMTUgMC04LjI4NTE1NyA2LjcxODc1LTE1IDE1LjAwMzkwNi0xNWgxNTljOC4yODUxNTcgMCAxNSA2LjcxNDg0MyAxNSAxNSAwIDguMjg1MTU2LTYuNzE4NzUgMTUtMTUgMTV6bTAgMCIvPjwvc3ZnPg=="/>
+    </button>
+
+    <!-- BOTON RANKING-->
+    <button type="button" class="botonr" data-toggle="modal" data-target="#Ranking">
+      <img class="botones_superiores" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEwLjc2OSA1MTAuNzY5IiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMC43NjkgNTEwLjc2OSIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Zz48cGF0aCBkPSJtLjM4NCAzMjUuNzY5aDE1MHYxODVoLTE1MHoiLz48cGF0aCBkPSJtMzYwLjM4NCAzMjUuNzY5aDE1MHYxODVoLTE1MHoiLz48cGF0aCBkPSJtMTgwLjM4NCA1MTAuNzY5aDE1MGMwLTEwLjQzNiAwLTI4OC45ODcgMC0zMDVoLTE1MHptMzAtMTU1aDMwdi02MGgtMTV2LTMwaDQ1djkwaDMwdjMwaC05MHoiLz48cGF0aCBkPSJtMjU1LjM4NCAwLTI3LjUzMiA1Ni40NDYtNjIuMTkzIDguNzQxIDQ1LjE3NyA0My42MjgtMTAuOTAzIDYxLjg1MSA1NS40NTEtMjkuNDg1IDU1LjQ1MiAyOS40ODUtMTAuOTA0LTYxLjg1MSA0NS4xNzgtNDMuNjI4LTYyLjE5My04Ljc0MXoiLz48L2c+PC9zdmc+" />
+    </button>
+
+    <!-- BOTON CAMBIAR DE NOMBRE -->
+    <button type="button" class="botonr" data-toggle="modal" data-target="cambiarNombre" >
+      <img class="botones_superiores" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMjEuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CjxwYXRoIGQ9Ik0zOTcuMjU4LDBjLTQzLjQwNCwwLTc4LjcxNCwzNS4zNTQtNzguNzE0LDc4LjgxMXMzNS4zMTEsNzguODExLDc4LjcxNCw3OC44MTFzNzguNzE1LTM1LjM1NCw3OC43MTUtNzguODExICBTNDQwLjY2MSwwLDM5Ny4yNTgsMHoiLz4KPGc+Cgk8cGF0aCBkPSJNMTU2Ljg0NywxNjQuMzU5Yy02LjQxOS01LjIzNy0xNS44NjgtNC4yNzctMjEuMTA1LDIuMTQ0bC02LDcuMzU2di02MS4xODNjMC03LjA2Niw1Ljc0OS0xMi44MTUsMTIuODE1LTEyLjgxNWgxMjMuMzA3ICAgYzguMjg0LDAsMTUtNi43MTYsMTUtMTVzLTYuNzE2LTE1LTE1LTE1SDE0Mi41NTdjLTIzLjYwOSwwLTQyLjgxNSwxOS4yMDctNDIuODE1LDQyLjgxNXY2MS4xODRsLTYuMDAxLTcuMzU3ICAgYy01LjIzNS02LjQyLTE0LjY4Ni03LjM3Ny0yMS4xMDUtMi4xNDRjLTYuNDIsNS4yMzYtNy4zOCwxNC42ODUtMi4xNDQsMjEuMTA0bDI5LjI1OCwzNS44NzNjMy42OSw0LjUyMiw5LjE1NCw3LjExNiwxNC45OTEsNy4xMTYgICBjNS44MzYsMCwxMS4zLTIuNTk0LDE0Ljk5MS03LjExOGwyOS4yNTctMzUuODcxQzE2NC4yMjcsMTc5LjA0NCwxNjMuMjY3LDE2OS41OTYsMTU2Ljg0NywxNjQuMzU5eiIvPgoJPHBhdGggZD0iTTQ1Ny4wNDEsMzI3LjUwMWwtMjkuMjU4LTM1Ljg3M2MtMy42OS00LjUyMi05LjE1NC03LjExNi0xNC45OS03LjExNmMtNS44MzcsMC0xMS4zMDEsMi41OTQtMTQuOTkyLDcuMTE4bC0yOS4yNTcsMzUuODcxICAgYy01LjIzNiw2LjQyLTQuMjc2LDE1Ljg2OCwyLjE0NCwyMS4xMDRjNi40MTcsNS4yMzYsMTUuODY4LDQuMjc1LDIxLjEwNS0yLjE0NGw2LTcuMzU2djYxLjE4M2MwLDcuMDY2LTUuNzQ5LDEyLjgxNS0xMi44MTUsMTIuODE1ICAgSDI2MS42N2MtOC4yODQsMC0xNSw2LjcxNi0xNSwxNXM2LjcxNiwxNSwxNSwxNWgxMjMuMzA3YzIzLjYwOSwwLDQyLjgxNS0xOS4yMDcsNDIuODE1LTQyLjgxNXYtNjEuMTg0bDYuMDAxLDcuMzU3ICAgYzIuOTY1LDMuNjM2LDcuMjgxLDUuNTIsMTEuNjMzLDUuNTJjMy4zMzMsMCw2LjY4OC0xLjEwNSw5LjQ3Mi0zLjM3NkM0NjEuMzE4LDM0My4zNjksNDYyLjI3OCwzMzMuOTIxLDQ1Ny4wNDEsMzI3LjUwMXoiLz4KPC9nPgo8cGF0aCBkPSJNNTExLjkxOSwyMzIuOTgyYy0yLjQzMi0yOC42NjEtMTUuNDM0LTU1LjIyOS0zNi42MTItNzQuODA5Yy0xLjY1Mi0xLjUyOC0zLjM0My0zLjAwMi01LjA3LTQuNDIyICBjLTE5LjAyNCwxOC4wOTctNDQuNzI5LDI5LjIxNi03Mi45NzksMjkuMjE2Yy0yOC4yNSwwLTUzLjk1NS0xMS4xMTktNzIuOTc4LTI5LjIxNmMtMS43MjcsMS40Mi0zLjQxOCwyLjg5NC01LjA3LDQuNDIyICBjLTIxLjE3OCwxOS41OC0zNC4xOCw0Ni4xNDctMzYuNjEyLDc0LjgwOGMtMC41NDEsNi4zNzUsMS42MzMsMTIuNzM0LDUuOTY0LDE3LjQ0OGM0LjMzMiw0LjcxNiwxMC40ODUsNy40MiwxNi44ODQsNy40MmgxODMuNjI1ICBjNi4zOTgsMCwxMi41NTItMi43MDQsMTYuODg0LTcuNDJDNTEwLjI4NiwyNDUuNzE2LDUxMi40NiwyMzkuMzU2LDUxMS45MTksMjMyLjk4MnoiLz4KPHBhdGggZD0iTTExNC43NDEsMjU0LjE1Yy00My40MDQsMC03OC43MTQsMzUuMzU0LTc4LjcxNCw3OC44MTFzMzUuMzExLDc4LjgxMSw3OC43MTQsNzguODExczc4LjcxNS0zNS4zNTQsNzguNzE1LTc4LjgxMSAgUzE1OC4xNDUsMjU0LjE1LDExNC43NDEsMjU0LjE1eiIvPgo8cGF0aCBkPSJNMjI5LjQwMiw0ODcuMTMzYy0yLjQzMi0yOC42NjEtMTUuNDM0LTU1LjIyOS0zNi42MTItNzQuODA5Yy0xLjY1Mi0xLjUyOC0zLjM0My0zLjAwMi01LjA3LTQuNDIyICBjLTE5LjAyNCwxOC4wOTctNDQuNzI5LDI5LjIxNi03Mi45NzksMjkuMjE2Yy0yOC4yNSwwLTUzLjk1NS0xMS4xMTktNzIuOTc4LTI5LjIxNmMtMS43MjcsMS40Mi0zLjQxNywyLjg5NC01LjA3LDQuNDIyICBjLTIxLjE3OCwxOS41OC0zNC4xOCw0Ni4xNDctMzYuNjEyLDc0LjgwOGMtMC41NDEsNi4zNzUsMS42MzMsMTIuNzM0LDUuOTY0LDE3LjQ0OGM0LjMzMiw0LjcxNiwxMC40ODUsNy40MiwxNi44ODQsNy40MmgxODMuNjI1ICBjNi4zOTgsMCwxMi41NTItMi43MDQsMTYuODg0LTcuNDJDMjI3Ljc2OSw0OTkuODY2LDIyOS45NDMsNDkzLjUwNywyMjkuNDAyLDQ4Ny4xMzN6Ii8+CgoKCgoKCgoKCgoKCgoKCjwvc3ZnPgo=" />
+    </button>
+
+    <!--Escoger Musica de inicio-->
+    <audio autoplay loop hidden id="miAudio"> <!-- name="player" controls autoplay loop hidden-->
+              
+      <source src="./musica/Rock.mp3"  type="audio/mp3">
+
+    </audio>    
+ 
+    <!-- BOTON MUSICA -->
+    <script src = "logicaMusica.js"></script>
+    <button type="button" class="botonm">    
+      <img class="botones_superiores" src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Speaker_Icon.svg/500px-Speaker_Icon.svg.png" onclick='toggleSound(this);  audioLogica(); toggleSound1()'> <!--toggleSound1(); playMusic(); botonMuscia();-->
+   </button>
+    <!--Audio que se puede escoger-->  
+    
+    <!--Información-->
+    <div id="ContenedorInformacion">
+     <div class="divInformacion">
+
+      <img class="botones_superiores" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im03NiAyNzBjMy44Mzk4NDQgMCA3LjY3NTc4MS0xLjQ2NDg0NCAxMC42MDU0NjktNC4zOTQ1MzFsMTA5LjM5NDUzMS0xMDkuMzk0NTMxIDQ5LjM5NDUzMSA0OS4zOTQ1MzFjNS44NTkzNzUgNS44NTkzNzUgMTUuMzUxNTYzIDUuODU5Mzc1IDIxLjIxMDkzOCAwbDE1NC4zOTQ1MzEtMTU0LjM5NDUzMXYyMy43ODkwNjJjMCA4LjI4OTA2MiA2LjcxMDkzOCAxNSAxNSAxNXMxNS02LjcxMDkzOCAxNS0xNXYtNjBjMC0uNDkyMTg4LS4wMjczNDQtLjk4ODI4MS0uMDc0MjE5LTEuNDc2NTYyLS4wMjM0MzctLjI0NjA5NC0uMDcwMzEyLS40ODQzNzYtLjEwNTQ2OS0uNzIyNjU3LS4wMzUxNTYtLjI0MjE4Ny0uMDYyNS0uNDg0Mzc1LS4xMDkzNzQtLjcyMjY1Ni0uMDU0Njg4LS4yOTI5NjktLjEzNjcxOS0uNTc0MjE5LS4yMDcwMzItLjg1OTM3NS0uMDUwNzgxLS4xODM1OTQtLjA4OTg0NC0uMzcxMDk0LS4xNDQ1MzEtLjU1NDY4OC0uMDg5ODQ0LS4zMDA3ODEtLjE5OTIxOS0uNTg5ODQzLS4zMDg1OTQtLjg4MjgxMi0uMDYyNS0uMTY0MDYyLS4xMTMyODEtLjMzMjAzMS0uMTc5Njg3LS40OTIxODgtLjEyNS0uMzAwNzgxLS4yNjk1MzItLjU5Mzc1LS40MTAxNTYtLjg4MjgxMi0uMDcwMzEzLS4xNDg0MzgtLjEzNjcxOS0uMjk2ODc1LS4yMTA5MzgtLjQ0MTQwNi0uMTcxODc1LS4zMjAzMTMtLjM1OTM3NS0uNjI1LS41NTA3ODEtLjkyOTY4OC0uMDY2NDA3LS4xMDkzNzUtLjEyNS0uMjE4NzUtLjE5NTMxMy0uMzI0MjE4LS4yNjk1MzEtLjQwMjM0NC0uNTU0Njg3LS43OTI5NjktLjg1OTM3NS0xLjE2Nzk2OS0uMDAzOTA2LS4wMDM5MDctLjAwMzkwNi0uMDA3ODEzLS4wMDc4MTItLjAxMTcxOS0uNjQ4NDM4LS43OTI5NjktMS4zNzUtMS41MTk1MzEtMi4xNjc5NjktMi4xNjc5NjktLjAwMzkwNi0uMDAzOTA2LS4wMDc4MTItLjAwMzkwNi0uMDExNzE5LS4wMDc4MTItLjM3NS0uMzA0Njg4LS43NjU2MjUtLjU4OTg0NC0xLjE2Nzk2OS0uODU5Mzc1LS4xMDU0NjgtLjA3MDMxMy0uMjE0ODQzLS4xMjg5MDYtLjMyNDIxOC0uMTk1MzEzLS4zMDQ2ODgtLjE5MTQwNi0uNjA5Mzc1LS4zNzg5MDYtLjkyOTY4OC0uNTUwNzgxLS4xNDQ1MzEtLjA3ODEyNS0uMjkyOTY4LS4xNDA2MjUtLjQ0MTQwNi0uMjEwOTM4LS4yODkwNjItLjE0NDUzMS0uNTgyMDMxLS4yODUxNTYtLjg4MjgxMi0uNDEwMTU2LS4xNjAxNTctLjA2NjQwNi0uMzI4MTI2LS4xMTcxODctLjQ5MjE4OC0uMTc5Njg3LS4yOTI5NjktLjEwOTM3NS0uNTgyMDMxLS4yMTg3NS0uODgyODEyLS4zMDg1OTQtLjE4MzU5NC0uMDU0Njg3LS4zNzEwOTQtLjA5Mzc1LS41NTQ2ODgtLjE0NDUzMS0uMjg1MTU2LS4wNzAzMTMtLjU2NjQwNi0uMTUyMzQ0LS44NTkzNzUtLjIwNzAzMi0uMjM4MjgxLS4wNDY4NzQtLjQ4MDQ2OS0uMDc0MjE4LS43MjI2NTYtLjEwOTM3NC0uMjM4MjgxLS4wMzUxNTctLjQ3NjU2My0uMDgyMDMxOC0uNzIyNjU3LS4xMDU0NjkyLS40ODgyODEtLjA0Njg3NS0uOTg0Mzc0LS4wNzQyMTg4LTEuNDc2NTYyLS4wNzQyMTg4aC02MGMtOC4yODkwNjIgMC0xNSA2LjcxMDkzOC0xNSAxNXM2LjcxMDkzOCAxNSAxNSAxNWgyMy43ODkwNjJsLTE0My43ODkwNjIgMTQzLjc4OTA2Mi00OS4zOTQ1MzEtNDkuMzk0NTMxYy01Ljg1OTM3NS01Ljg1OTM3NS0xNS4zNTE1NjMtNS44NTkzNzUtMjEuMjEwOTM4IDBsLTEyMCAxMjBjLTUuODU5Mzc1IDUuODU5Mzc1LTUuODU5Mzc1IDE1LjM1MTU2MyAwIDIxLjIxMDkzOCAyLjkyOTY4OCAyLjkyOTY4NyA2Ljc2NTYyNSA0LjM5NDUzMSAxMC42MDU0NjkgNC4zOTQ1MzF6bTAgMCIvPjxwYXRoIGQ9Im0wIDQ5N2MwIDguMjg5MDYyIDYuNzEwOTM4IDE1IDE1IDE1aDEyMGM4LjI4OTA2MiAwIDE1LTYuNzEwOTM4IDE1LTE1di0yMWgtMTUwem0wIDAiLz48cGF0aCBkPSJtMTM1IDQxMGgtMTIwYy04LjI4OTA2MiAwLTE1IDYuNzEwOTM4LTE1IDE1djIxaDE1MHYtMjFjMC04LjI4OTA2Mi02LjcxMDkzOC0xNS0xNS0xNXptMCAwIi8+PHBhdGggZD0ibTE4MSA0OTdjMCA4LjI4OTA2MiA2LjcxMDkzOCAxNSAxNSAxNWgxMjBjOC4yODkwNjIgMCAxNS02LjcxMDkzOCAxNS0xNXYtMjFoLTE1MHptMCAwIi8+PHBhdGggZD0ibTM2MiA0MTBoMTUwdjM2aC0xNTB6bTAgMCIvPjxwYXRoIGQ9Im00OTcgMjEyaC0xMjBjLTguMjg5MDYyIDAtMTUgNi43MTA5MzgtMTUgMTV2MjFoMTUwdi0yMWMwLTguMjg5MDYyLTYuNzEwOTM4LTE1LTE1LTE1em0wIDAiLz48cGF0aCBkPSJtMzYyIDI3OGgxNTB2MzZoLTE1MHptMCAwIi8+PHBhdGggZD0ibTM2MiAzNDRoMTUwdjM2aC0xNTB6bTAgMCIvPjxwYXRoIGQ9Im0zNjIgNDk3YzAgOC4yODkwNjIgNi43MTA5MzggMTUgMTUgMTVoMTIwYzguMjg5MDYyIDAgMTUtNi43MTA5MzggMTUtMTV2LTIxaC0xNTB6bTAgMCIvPjxwYXRoIGQ9Im0xODEgNDEwaDE1MHYzNmgtMTUwem0wIDAiLz48cGF0aCBkPSJtMzE2IDM0NGgtMTIwYy04LjI4OTA2MiAwLTE1IDYuNzEwOTM4LTE1IDE1djIxaDE1MHYtMjFjMC04LjI4OTA2Mi02LjcxMDkzOC0xNS0xNS0xNXptMCAwIi8+PC9zdmc+"/> 
+      Ganancia</div>
+     <div  class="divInformacion">
+      <img class="botones_superiores" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjQyMHB0IiB2aWV3Qm94PSItNTcgMCA0MjAgNDIwIiB3aWR0aD0iNDIwcHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTE4Ny42OTkyMTkgMTcyLjM5ODQzOGMwIDE5LjE2NDA2Mi0xNS41MzUxNTcgMzQuNzAzMTI0LTM0LjY5OTIxOSAzNC43MDMxMjRzLTM0LjY5OTIxOS0xNS41MzkwNjItMzQuNjk5MjE5LTM0LjcwMzEyNGMwLTE5LjE2NDA2MyAxNS41MzUxNTctMzQuNjk5MjE5IDM0LjY5OTIxOS0zNC42OTkyMTlzMzQuNjk5MjE5IDE1LjUzNTE1NiAzNC42OTkyMTkgMzQuNjk5MjE5em0wIDAiLz48cGF0aCBkPSJtMTUzIDI2MC4xMDE1NjJjLTE2LjU4OTg0NC0uMTEzMjgxLTMyLjUxMTcxOSA2LjUyNzM0NC00NC4xMDE1NjIgMTguMzk4NDM4LTEwLjI5Njg3NiAxMC41LTE2LjUgMjQuNS0xOCAzOS44MDA3ODFoMTI0LjIwMzEyNGMtMS41LTE1LjQwMjM0My03LjcwMzEyNC0yOS4zMDA3ODEtMTgtMzkuODAwNzgxLTExLjU4OTg0My0xMS44NzEwOTQtMjcuNTExNzE4LTE4LjUxMTcxOS00NC4xMDE1NjItMTguMzk4NDM4em0wIDAiLz48cGF0aCBkPSJtMjczIDBoLTI0MGMtMTguMjE4NzUuMDE5NTMxMi0zMi45ODA0Njg4IDE0Ljc4MTI1LTMzIDMzdjM1NGMuMDE5NTMxMiAxOC4yMTg3NSAxNC43ODEyNSAzMi45ODA0NjkgMzMgMzNoMjQwYzE4LjIxODc1LS4wMTk1MzEgMzIuOTgwNDY5LTE0Ljc4MTI1IDMzLTMzdi0zNTRjLS4wMTk1MzEtMTguMjE4NzUtMTQuNzgxMjUtMzIuOTgwNDY4OC0zMy0zM3ptLTE2MS42OTkyMTkgMzMuMTAxNTYyaDgwYzMuODYzMjgxIDAgNyAzLjEzMjgxMyA3IDcgMCAzLjg2MzI4Mi0zLjEzNjcxOSA3LTcgN2gtODBjLTMuODY3MTg3IDAtNy0zLjEzNjcxOC03LTcgMC0zLjg2NzE4NyAzLjEzMjgxMy03IDctN3ptNDEuNjk5MjE5IDkwLjU5NzY1N2MyNi44NjcxODguMDI3MzQzIDQ4LjYyODkwNiAyMS44MzIwMzEgNDguNjAxNTYyIDQ4LjY5OTIxOS0uMDI3MzQzIDI2Ljg3MTA5My0yMS44MzIwMzEgNDguNjI4OTA2LTQ4LjcwMzEyNCA0OC42MDE1NjItMjYuODY3MTg4LS4wMjczNDQtNDguNjI1LTIxLjgzMjAzMS00OC41OTc2NTctNDguNjk5MjE5LjA4NTkzOC0yNi44NDM3NSAyMS44NTU0NjktNDguNTcwMzEyIDQ4LjY5OTIxOS00OC42MDE1NjJ6bTY5LjM5ODQzOCAyMDguNjAxNTYyaC0xMzguNzk2ODc2Yy0xLjg2MzI4MS4wMTE3MTktMy42NDg0MzctLjcyMjY1Ni00Ljk2NDg0My0yLjAzOTA2Mi0xLjMxNjQwNy0xLjMxNjQwNy0yLjA0Njg3NS0zLjEwMTU2My0yLjAzNTE1Ny00Ljk2MDkzOCAwLTIxLjgwMDc4MSA3Ljg5ODQzOC00MS45MDIzNDMgMjIuMjk2ODc2LTU2LjYwMTU2MiAxNC4yODkwNjItMTQuNDYwOTM4IDMzLjc3MzQzNy0yMi41OTc2NTcgNTQuMTAxNTYyLTIyLjU5NzY1N3MzOS44MTI1IDguMTM2NzE5IDU0LjEwMTU2MiAyMi41OTc2NTdjMTQuMzk4NDM4IDE0LjY5OTIxOSAyMi4yOTY4NzYgMzQuODAwNzgxIDIyLjI5Njg3NiA1Ni42MDE1NjIuMDExNzE4IDEuODU5Mzc1LS43MTg3NSAzLjY0NDUzMS0yLjAzNTE1NyA0Ljk2MDkzOC0xLjMxNjQwNiAxLjMxNjQwNi0zLjEwMTU2MiAyLjA1MDc4MS00Ljk2NDg0MyAyLjAzOTA2MnptMCAwIi8+PC9zdmc+"/> 
+      <a id="NombreJugador"></a>
+      </div>
+    <div class="divInformacion">
+      <img class="botones_superiores" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjQwMS42MDFweCIgaGVpZ2h0PSI0MDEuNnB4IiB2aWV3Qm94PSIwIDAgNDAxLjYwMSA0MDEuNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDAxLjYwMSA0MDEuNjsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGQ9Ik0xMTYuNjgyLDIyOS4zMjljMTEuMjg2LDAsMjIuMTk1LTAuNzI5LDMyLjUxOC0yLjA4NlYxMTQuMDk0Yy0xMC4zMjItMS4zNTYtMjEuMjMyLTIuMDg1LTMyLjUxOC0yLjA4NQ0KCQkJYy02NC40NDEsMC0xMTYuNjgxLDIzLjY5My0xMTYuNjgxLDUyLjkyMXYxMS40NzdDMC4wMDEsMjA1LjYzNCw1Mi4yNDEsMjI5LjMyOSwxMTYuNjgyLDIyOS4zMjl6Ii8+DQoJCTxwYXRoIGQ9Ik0xMTYuNjgyLDI4OC40MTFjMTEuMjg2LDAsMjIuMTk1LTAuNzI5LDMyLjUxOC0yLjA4NHYtMzMuMTY2Yy0xMC4zMjUsMS4zNTYtMjEuMjI5LDIuMDk1LTMyLjUxOCwyLjA5NQ0KCQkJYy01Ni4yNSwwLTEwMy4xOTktMTguMDU0LTExNC4yMjctNDIuMDgyYy0xLjYwNiwzLjUtMi40NTQsNy4xMjQtMi40NTQsMTAuODM5djExLjQ3Nw0KCQkJQzAuMDAxLDI2NC43MTgsNTIuMjQxLDI4OC40MTEsMTE2LjY4MiwyODguNDExeiIvPg0KCQk8cGF0aCBkPSJNMTQ5LjE5OSwzMTQuODIzdi0yLjU3OGMtMTAuMzI1LDEuMzU2LTIxLjIyOSwyLjA5NS0zMi41MTgsMi4wOTVjLTU2LjI1LDAtMTAzLjE5OS0xOC4wNTQtMTE0LjIyNy00Mi4wODINCgkJCUMwLjg0OCwyNzUuNzU3LDAsMjc5LjM4MSwwLDI4My4wOTZ2MTEuNDc3YzAsMjkuMjI5LDUyLjI0LDUyLjkyMiwxMTYuNjgxLDUyLjkyMmMxMi44ODcsMCwyNS4yODItMC45NSwzNi44NzMtMi43DQoJCQljLTIuODczLTUuODc3LTQuMzU1LTEyLjA3NS00LjM1NS0xOC40OTZWMzE0LjgyM3oiLz4NCgkJPHBhdGggZD0iTTI4NC45MiwyMi4zNzljLTY0LjQ0MSwwLTExNi42ODEsMjMuNjkzLTExNi42ODEsNTIuOTIxdjExLjQ3N2MwLDI5LjIyOCw1Mi4yNCw1Mi45MjEsMTE2LjY4MSw1Mi45MjENCgkJCWM2NC40NCwwLDExNi42ODEtMjMuNjkzLDExNi42ODEtNTIuOTIxVjc1LjNDNDAxLjYwMSw0Ni4wNzIsMzQ5LjM2LDIyLjM3OSwyODQuOTIsMjIuMzc5eiIvPg0KCQk8cGF0aCBkPSJNMjg0LjkyLDE2NS42MjZjLTU2LjI1LDAtMTAzLjE5OS0xOC4wNTMtMTE0LjIyNy00Mi4wODJjLTEuNjA2LDMuNDk5LTIuNDU0LDcuMTIzLTIuNDU0LDEwLjgzOXYxMS40NzcNCgkJCWMwLDI5LjIyOCw1Mi4yNCw1Mi45MjEsMTE2LjY4MSw1Mi45MjFjNjQuNDQsMCwxMTYuNjgxLTIzLjY5MywxMTYuNjgxLTUyLjkyMXYtMTEuNDc3YzAtMy43MTYtMC44NDgtNy4zNC0yLjQ1NC0xMC44MzkNCgkJCUMzODguMTE5LDE0Ny41NzMsMzQxLjE3LDE2NS42MjYsMjg0LjkyLDE2NS42MjZ6Ii8+DQoJCTxwYXRoIGQ9Ik0yODQuOTIsMjI0LjcxYy01Ni4yNSwwLTEwMy4xOTktMTguMDU0LTExNC4yMjctNDIuMDgyYy0xLjYwNiwzLjQ5OS0yLjQ1NCw3LjEyMy0yLjQ1NCwxMC44Mzl2MTEuNDc3DQoJCQljMCwyOS4yMjksNTIuMjQsNTIuOTIyLDExNi42ODEsNTIuOTIyYzY0LjQ0LDAsMTE2LjY4MS0yMy42OTMsMTE2LjY4MS01Mi45MjJ2LTExLjQ3N2MwLTMuNzE2LTAuODQ4LTcuMzQtMi40NTQtMTAuODM5DQoJCQlDMzg4LjExOSwyMDYuNjU3LDM0MS4xNywyMjQuNzEsMjg0LjkyLDIyNC43MXoiLz4NCgkJPHBhdGggZD0iTTI4NC45MiwyODYuOTgzYy01Ni4yNSwwLTEwMy4xOTktMTguMDU0LTExNC4yMjctNDIuMDgyYy0xLjYwNiwzLjUtMi40NTQsNy4xMjMtMi40NTQsMTAuODM4djExLjQ3OA0KCQkJYzAsMjkuMjI4LDUyLjI0LDUyLjkyMSwxMTYuNjgxLDUyLjkyMWM2NC40NCwwLDExNi42ODEtMjMuNjkzLDExNi42ODEtNTIuOTIxdi0xMS40NzhjMC0zLjcxNS0wLjg0OC03LjM0LTIuNDU0LTEwLjgzOA0KCQkJQzM4OC4xMTksMjY4LjkyOCwzNDEuMTcsMjg2Ljk4MywyODQuOTIsMjg2Ljk4M3oiLz4NCgkJPHBhdGggZD0iTTI4NC45MiwzNDYuMDY2Yy01Ni4yNSwwLTEwMy4xOTktMTguMDUzLTExNC4yMjctNDIuMDgxYy0xLjYwNiwzLjUtMi40NTQsNy4xMjUtMi40NTQsMTAuODM4VjMyNi4zDQoJCQljMCwyOS4yMjgsNTIuMjQsNTIuOTIxLDExNi42ODEsNTIuOTIxYzY0LjQ0LDAsMTE2LjY4MS0yMy42OTMsMTE2LjY4MS01Mi45MjF2LTExLjQ3OGMwLTMuNzE1LTAuODQ4LTcuMzQtMi40NTQtMTAuODM4DQoJCQlDMzg4LjExOSwzMjguMDEyLDM0MS4xNywzNDYuMDY2LDI4NC45MiwzNDYuMDY2eiIvPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+      200 </div>
+
+    </div>
+    <!--FIN Información-->
+    </div>
+     
+   
+  </div>
+
+   
+  <!--LOS MODALES desde aqui-->
+  <!--Modal Acerca de-->
+  <div class="modal fade" id="aModal" role="document">
+    <div class="modal-dialog">
+      <div class="modal-content">   
+        <div class="modal-header">
+          <h4 class="modal-title"> 
+            Acerca De         
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" id ="textoAcercade" >
+          <div class="modal-textA">
+            <p>Nombre Completo: Miguel Angel Yaranga Paucar</p>            
+            <p class="blank-bottom2">Edad: 22</p>
+            <p>Nombre Completo: Iver Castro Rivero</p>            
+            <p class="blank-bottom2">Edad: 22</p>
+            <p>Nombre Completo: Andrea Fernandez Crisostomo</p>            
+            <p class="blank-bottom2">Edad: 22</p>
+            <p>Nombre Completo: Manuel Callirgos Montoya</p>            
+            <p class="blank-bottom2">Edad: 22</p>
+          </div>
+          <div class="modal-imageA">
+            <img class="img-margin" src="Miguel_Angel.jpg">
+            <img class="img-margin" src="Iver.jpg">
+            <img class="img-margin" src="Andrea.jpg">
+            <img class="img-margin" src="Manuel.jpg">
+          </div>
+        </div>  
+        <div class="modal-footer">           
+        </div>
+      </div>      
+    </div>
+  </div> 
+
+  <!--Modal Instruccions-->
+  <div class="modal fade" id="iModal">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">   
+        <div class="modal-header">
+          <h4 class="modal-title"> 
+            Instrucciones          
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-bodyI" >
+          <div id = "textoInstrucciones"  >
+            <br>
+            
+            <p>
+                Se tiene dos máquinas A y B.
+                Cuando se apuesta a una máquina,
+                ella responde con 2 letras. </p>
+            <p>Las letras posibles son: J, Q, K, A. Si sale JJ.
+              La ganancia es el doble de lo apostado, 
+              Si es QQ es el triple
+              Si es KK es el cuádruple,
+              y si es AA es diez veces lo apostado. 
+              Si sale cualquier otra combinación se
+              pierde lo apostado.</p>
+            <p>De manera aleatoria se le asigna una
+              mayor probabilidad de más ganancia a
+              una de ellas pero el jugador no sabe
+              cuál es esa máquina de mayor ganancia.</p>
+            <p>El jugador inicia con una cantidad de 200 
+              monedas las cuales puede ir apostando en 
+              múltiplos de 10 en cualquiera de las 
+              máquinas hasta que se quede sin monedas 
+              o hasta que decida finalizar su juego.</p>
+            
+            </div>                
+        </div>  
+        
+        <div class="modal-footer">            
+        </div>
+      </div>      
+    </div>
+  </div>   
+  <!--Modal Ranking-->
+  <div class="modal fade" id="Ranking">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">   
+        <div class="modal-header">
+          <h4 class="modal-title"> 
+            Ranking          
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-bodyI" >
+          <div id = "textoInstrucciones"  >
+            <br>
+            
+            <table id ="TablaRanking" class="table">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ganancia</th>
+                <th scope="col">Apuestas</th>
+                <th scope="col">Promedio</th>
+              </tr>
+              <tr>
+                <td >1</td>
+                <td>Mariasders</td>
+                <td>200</td>
+                <td>5</td>
+                <td>20005</td>
+                
+              </tr>
+            </table>
+            
+            </div>                
+        </div>           
+        <div class="modal-footer">            
+        </div>
+      </div>      
+    </div>
+  </div>  
+  <!--FIN DE LOS MODALES-->    
+
+  <!--Parte de los tragamonedas-->  
+
+  
+  <div id="patio">
+    <h1 id="MensajePatio">ESCOGE UNA MAQUINA</h1>
+    <div id="ZonaA" class="Zonas">
+      <img src="MaquinaA1.png"  alt="MaquinaA1 html-5.png" id="MaquinaA" class="Maquina">
+      <div id="FilasA" class="Filas">
+        <p id="DefinicionA" class="Definicion">MaquinaA</p>
+        <input type="text" id="MensajesA" class="Mensaje">
+        <br>
+        <input type="text" id="PrimeraLetraA" class="Letra" size="1">
+        <input type="text" id="SegundaLetraA" class="Letra" size="1">
+        <br>
+        <input type="text" id="GananciaA" class="Mensaje" size="10">
+        <input type="text" id="ApuestaA" class="Mensaje" size="10">
+        <br>
+        <input type="button" id="AumentarA" value="Aumentar" class="Boton">
+        <input type="button" id="DisminuirA" value="Disminuir" class="Boton">
+        <br>
+        <input type="button" id="ApostarA" value="APOSTAR" class="MegaBoton">
+      </div>
+
+
+    </div>
+
+    <div id="ZonaB" class="Zonas">
+        <img src="MaquinaB1.png"  alt="MaquinaB1 html-5.png" id="MaquinaB" class="Maquina" >
+        <div id="FilasB" class="Filas">
+          <p id="DefinicionB" class="Definicion">MaquinaB</p>
+          <input type="text" id="MensajesB" class="Mensaje">
+          <br>
+          <input type="text" id="PrimeraLetraB" class="Letra" size="1">
+          <input type="text" id="SegundaLetraB" class="Letra" size="1">
+          <br>
+          <input type="text" id="GananciaA" class="Mensaje" size="10">
+          <input type="text" id="ApuestaA" class="Mensaje" size="10">
+          <br>
+          <input type="button" id="AumentarB" value="Aumentar" class="Boton">
+          <input type="button" id="DisminuirB" value="Disminuir" class="Boton">
+          <br>
+          <input type="button" id="ApostarB" value="APOSTAR" class="MegaBoton">
+        </div>
+
+    </div>
+ </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <script src="logicaModal.js"></script>
+    <script src="logicaNombre.js"></script>
+      
+</body>
+</html>
